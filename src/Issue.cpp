@@ -17,7 +17,7 @@
  * @param board quadro de tarefas da tarefa
  */
 
-Issue::Issue(int id, std::string title, std::string description, int priority, int difficult, std::string date, std::string board)
+Issue::Issue(int id, const std::string &title, const std::string &description, int priority, int difficult, const std::string &date, const std::string &board)
     : semiIssue(id, title, description), priority(priority), difficult(difficult), date(date), board(board) {
 }
 /**
@@ -62,14 +62,14 @@ void Issue::setDifficult(int difficult){
  * @brief setter da data da tarefa
  * @param date nova data da tarefa
  */
-void Issue::setDate(std::string date){
+void Issue::setDate(const std::string &date){
     this->date = date;
 }
 /**
  * @brief setter do quadro de tarefas da tarefa
  * @param board novo quadro de tarefas da tarefa
  */
-void Issue::setBoard(std::string board){
+void Issue::setBoard(const std::string &board){
     this->board = board;
 }
 /**

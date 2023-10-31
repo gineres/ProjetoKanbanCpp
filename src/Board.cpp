@@ -338,10 +338,9 @@ void Board::detalhaIssue(int id){
 template <typename T>
 void Board::bubbleSort(std::vector<Issue> &vector, T compareFn){
     int n = vector.size();
-    bool swapped;
 
     for (int i = 0; i < n - 1; ++i){
-        swapped = false;
+        bool swapped = false;
 
         for (int j = 0; j < n - i - 1; ++j){
             if (compareFn(vector[j], vector[j + 1])){
@@ -562,7 +561,7 @@ void Board::mudaBoard(){
  * @param id Id da tarefa a ser alterada
  * @param novaBoard Nova board a ser alterada
 */
-int Board::alteraPropriedadeBoard(int id, std::string novaBoard){
+int Board::alteraPropriedadeBoard(int id, const std::string &novaBoard){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getId() == id){
             backlogIssues[i].setBoard(novaBoard);
@@ -747,19 +746,18 @@ void Board::salvaBoard(){
 */
 int Board::carregaBoard(){
     std::ifstream arquivoEntrada("../data/quadroPrincipal.txt");
-    int maiorId = 0;
-    int numIssues;
-    int id;
-    std::string title;
-    std::string description;
-    int priority;
-    int difficult;
-    std::string date;
-    std::string board;
-    std::string line;
     if (arquivoEntrada.is_open()){
+        int maiorId = 0;
+        int id;
+        std::string title;
+        std::string description;
+        int priority;
+        int difficult;
+        std::string date;
+        std::string board;
+        std::string line;
         while (std::getline(arquivoEntrada, line)){
-            numIssues = std::stoi(line);
+            int numIssues = std::stoi(line);
             for (int i = 0; i < numIssues; i++){
                 std::getline(arquivoEntrada, line);
                 id = std::stoi(line);

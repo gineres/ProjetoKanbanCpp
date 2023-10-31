@@ -32,7 +32,7 @@ public:
      * @param date data da tarefa
      * @param board quadro de tarefas da tarefa
      */
-    Issue(int id, std::string title, std::string description, int priority, int difficult, std::string date, std::string board);
+    Issue(int id, const std::string &title, const std::string &description, int priority, int difficult, const std::string &date, const std::string &board);
     /**
      * @brief getter da prioridade da tarefa
      */
@@ -63,16 +63,16 @@ public:
      * @brief setter da data da tarefa
      * @param date nova data da tarefa
      */
-    void setDate(std::string date);
+    void setDate(const std::string &date);
     /**
      * @brief setter do quadro de tarefas da tarefa
      * @param board novo quadro de tarefas da tarefa
      */
-    void setBoard(std::string board);
+    void setBoard(const std::string &board);
     /**
      * @brief função que imprime os dados da tarefa, herdado da classe semiIssue.
      */
-    void printIssue();
+    void printIssue() override;
 };
 
 #endif

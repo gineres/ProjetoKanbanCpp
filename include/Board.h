@@ -81,7 +81,7 @@ public:
     /**
      * @brief função responsável por alterar a propriedade de uma tarefa, para muda-la de board.
     */
-    int alteraPropriedadeBoard(int id, std::string novaBoard);
+    int alteraPropriedadeBoard(int id, const std::string &novaBoard);
     /**
      * @brief função responsável por imprimir o board.
     */

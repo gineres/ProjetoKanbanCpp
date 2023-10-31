@@ -26,7 +26,7 @@ public:
      * @param title título da tarefa
      * @param description descrição da tarefa
     */
-    semiIssue(int id, std::string title, std::string description);
+    semiIssue(int id, const std::string &title, const std::string &description);
     /**
      * @brief getter do id da tarefa
     */
@@ -43,12 +43,12 @@ public:
      * @brief setter do título da tarefa
      * @param newTitle novo título da tarefa
     */
-    void setTitle(std::string title);
+    void setTitle(const std::string &title);
     /**
      * @brief setter da descrição da tarefa
      * @param newDescription nova descrição da tarefa
     */
-    void setDescription(std::string description);
+    void setDescription(const std::string &description);
     /**
      * @brief função que imprime os dados da tarefa, e pode ser passado para classe filha.
     */

@@ -13,7 +13,7 @@
  * @param description Descrição da tarefa
  */
 
-semiIssue::semiIssue(int id, std::string title, std::string description)
+semiIssue::semiIssue(int id, const std::string &title, const std::string &description)
     : id(id), title(title), description(description) {
 }
 
@@ -49,7 +49,7 @@ std::string semiIssue::getDescription(){
  * @param newTitle Novo título da tarefa
  */
 
-void semiIssue::setTitle(std::string newTitle){
+void semiIssue::setTitle(const std::string &newTitle){
     title = newTitle;
 }
 
@@ -58,7 +58,7 @@ void semiIssue::setTitle(std::string newTitle){
  * @param newDescription Nova descrição da tarefa
  */
 
-void semiIssue::setDescription(std::string newDescription){
+void semiIssue::setDescription(const std::string &newDescription){
     description = newDescription;
 }
 
