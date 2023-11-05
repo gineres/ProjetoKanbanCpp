@@ -42,15 +42,15 @@ public:
     /**
      * @brief Função responsável por apagar uma tarefa de um board.
      */
-    void apagaIssue(int id);
+    void removeIssueFromAllBoards(int id);
     /**
      * @brief Função responsável por editar uma tarefa de um board.
      */
-    void editaIssue(int id, int opcao);
+    void editIssue(int id, int opcao);
     /**
      * @brief Função responsável por detalhar uma tarefa de um board.
      */
-    void detalhaIssue(int id);
+    void showIssue(int id);
     /**
      * @brief Função de busca binária (recursiva) para encontrar uma tarefa em um board.
     */
@@ -77,11 +77,11 @@ public:
     /**
      * @brief função responsável por mudar uma tarefa de board.
     */
-    void mudaBoard();
+    void changeBoard();
     /**
      * @brief função responsável por alterar a propriedade de uma tarefa, para muda-la de board.
     */
-    int alteraPropriedadeBoard(int id, const std::string &novaBoard);
+    int changeIssueBoard(int id, const std::string &novaBoard);
     /**
      * @brief função responsável por imprimir o board.
     */
@@ -89,11 +89,11 @@ public:
     /**
      * @brief Função responsável por salvar o board em um arquivo txt, ele salva primeiro o tamanho de cada vector, e após isso salva os dados em sequencia.
     */
-    void salvaBoard();
+    void saveBoard();
     /**
      * @brief Função responsável por carregar o board de um arquivo txt, ele carrega primeiro o tamanho de cada vector, e após isso carrega os dados em sequencia.
     */
-    int carregaBoard();
+    int retrieveBoard();
 };
 
 #endif

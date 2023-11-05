@@ -65,7 +65,7 @@ void Board::removeIssue(int id, T &vector){
  * @brief Função responsável por apagar uma tarefa de todos os vetores, ele chama a função removeIssue para cada vetor, e assim apagando a tarefa de todos os vetores, ele faz uma dupla verificação, visto que na buscabinária ele busca o id, e se nao encontrar ele retorna -1, já aqui é garantido que ele não vai retornar -1, pois ele já passou por todos os vetores, e se não encontrou, é porque não existe.
  * @param id Id da tarefa a ser apagada
 */
-void Board::apagaIssue(int id){
+void Board::removeIssueFromAllBoards(int id){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getId() == id){
             removeIssue(id, backlogIssues);
@@ -102,7 +102,7 @@ void Board::apagaIssue(int id){
  * @param id Id da tarefa a ser editada
  * @param opcao Opção escolhida pelo usuário
 */
-void Board::editaIssue(int id, int opcao){
+void Board::editIssue(int id, int opcao){
     std::string title;
     std::string description;
     int priority;
@@ -298,7 +298,7 @@ void Board::editaIssue(int id, int opcao){
 /**
  * @brief Função responsável por detalhar uma tarefa, ele faz uma varredura pelo id da tarefa em cada board, e se encontrar ele "printa" a tarefa usando a função de polimorfismo.
 */
-void Board::detalhaIssue(int id){
+void Board::showIssue(int id){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getId() == id){
             backlogIssues[i].printIssue();
@@ -410,7 +410,7 @@ void Board::organizeByDifficulty()
 /**
  * @brief Função responsável por alterar a propriedade de uma tarefa, para muda-la de board, em primeiro passo ele verifica em cada vector se a propriedade "board" de cada Issue condiz com a board que ele está, se nao condizer, ele verifica o board que pertence e colocar no vector correto, essa função será usada dentro da função que altera a propriedade board de uma Issue.
 */
-void Board::mudaBoard(){
+void Board::changeBoard(){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getBoard() != "Backlog"){
             if (backlogIssues[i].getBoard() == "Fazendo"){
@@ -557,50 +557,50 @@ void Board::mudaBoard(){
     }
 }
 /**
- * @brief Essa função é a responsável de alterar a propriedade 'board' de uma Issue específica, ele chama a função mudaBoard() após alterar a propriedade, organizando assim cada issue em sua respectiva board.
+ * @brief Essa função é a responsável de alterar a propriedade 'board' de uma Issue específica, ele chama a função changeBoard() após alterar a propriedade, organizando assim cada issue em sua respectiva board.
  * @param id Id da tarefa a ser alterada
  * @param novaBoard Nova board a ser alterada
 */
-int Board::alteraPropriedadeBoard(int id, const std::string &novaBoard){
+int Board::changeIssueBoard(int id, const std::string &novaBoard){
     for (int i = 0; i < backlogIssues.size(); i++){
         if (backlogIssues[i].getId() == id){
             backlogIssues[i].setBoard(novaBoard);
-            mudaBoard();
+            changeBoard();
             return 0;
         }
     }
     for (int i = 0; i < fazendoIssues.size(); i++){
         if (fazendoIssues[i].getId() == id){
             fazendoIssues[i].setBoard(novaBoard);
-            mudaBoard();
+            changeBoard();
             return 0;
         }
     }
     for (int i = 0; i < emAnaliseIssues.size(); i++){
         if (emAnaliseIssues[i].getId() == id){
             emAnaliseIssues[i].setBoard(novaBoard);
-            mudaBoard();
+            changeBoard();
             return 0;
         }
     }
     for (int i = 0; i < testandoIssues.size(); i++){
         if (testandoIssues[i].getId() == id){
             testandoIssues[i].setBoard(novaBoard);
-            mudaBoard();
+            changeBoard();
             return 0;
         }
     }
     for (int i = 0; i < emPilotoIssues.size(); i++){
         if (emPilotoIssues[i].getId() == id){
             emPilotoIssues[i].setBoard(novaBoard);
-            mudaBoard();
+            changeBoard();
             return 0;
         }
     }
     for (int i = 0; i < entregueIssues.size(); i++){
         if (entregueIssues[i].getId() == id){
             entregueIssues[i].setBoard(novaBoard);
-            mudaBoard();
+            changeBoard();
             return 0;
         }
     }
@@ -671,7 +671,7 @@ void Board::printBoard(){
 /**
  * @brief Função responsável por salvar o board em um arquivo txt, ele salva primeiro o tamanho de cada vector, e após isso salva os dados em sequencia.
 */
-void Board::salvaBoard(){
+void Board::saveBoard(){
     std::ofstream arquivoSaida("../data/quadroPrincipal.txt");
 
     if (arquivoSaida.is_open()){
@@ -744,7 +744,7 @@ void Board::salvaBoard(){
 /**
  * @brief Função responsável por carregar o board de um arquivo txt, ele carrega primeiro o tamanho de cada vector, e após isso carrega os dados em sequencia.
 */
-int Board::carregaBoard(){
+int Board::retrieveBoard(){
     std::ifstream arquivoEntrada("../data/quadroPrincipal.txt");
     if (arquivoEntrada.is_open()){
         int maiorId = 0;
